@@ -5,15 +5,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Counts number of lines in a file.
+ * Utility class to count entries in a file.
  */
 public class FileEntryCounter {
 
     /**
-     * Count file entries.
+     * Counts the number of lines in the file.
+     *
+     * @param filePath File path
+     * @return Number of entries
+     * @throws IOException if reading fails
      */
-    public static long countEntries(Path file) throws IOException {
+    public static long countEntries(Path filePath) throws IOException {
 
-        return Files.lines(file).count();
+        return Files.lines(filePath).count();
     }
 }

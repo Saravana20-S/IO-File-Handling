@@ -1,25 +1,16 @@
 package com.bridgelabz.fileio;
 
 /**
- * Model class representing an Employee.
+ * Represents an Employee Payroll record.
  */
 public class EmployeePayrollData {
 
-    // Employee ID
     private int id;
-
-    // Employee Name
     private String name;
-
-    // Employee Salary
     private double salary;
 
     /**
-     * Parameterized constructor.
-     *
-     * @param id Employee ID
-     * @param name Employee Name
-     * @param salary Employee Salary
+     * Parameterized Constructor.
      */
     public EmployeePayrollData(int id, String name, double salary) {
         this.id = id;
@@ -27,15 +18,8 @@ public class EmployeePayrollData {
         this.salary = salary;
     }
 
-    /**
-     * Returns employee details in readable format.
-     */
     @Override
     public String toString() {
-        return "EmployeePayrollData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                '}';
+        return id + "," + name + "," + salary;
     }
 }
