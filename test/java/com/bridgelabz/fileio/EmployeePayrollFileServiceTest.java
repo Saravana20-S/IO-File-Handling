@@ -9,21 +9,18 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * Test class for EmployeePayrollFileService.
+ * Test class for Employee Payroll File Service.
  */
 public class EmployeePayrollFileServiceTest {
 
-    /**
-     * Payroll file location.
-     */
     private static final Path PAYROLL_FILE =
             Paths.get("TempPlayGround", "EmployeePayroll.txt");
 
     /**
-     * Tests writing employee payroll to a file and verifies entry count.
+     * Tests printing employee payroll from the file.
      */
     @Test
-    public void givenEmployeePayrollDataWhenWrittenToFileShouldMatchEntries()
+    public void givenEmployeePayrollDataWhenPrintedShouldMatchEntries()
             throws IOException {
 
         List<EmployeePayrollData> employeeList = List.of(
@@ -35,12 +32,17 @@ public class EmployeePayrollFileServiceTest {
         EmployeePayrollFileService service =
                 new EmployeePayrollFileService();
 
+        // Write employee payroll to file
         service.writeEmployeePayroll(employeeList, PAYROLL_FILE);
 
+        // Print employee payroll
+        service.printEmployeePayroll(PAYROLL_FILE);
+
+        // Count entries
         long entries = FileEntryCounter.countEntries(PAYROLL_FILE);
 
-        System.out.println("Number of Entries : " + entries);
+        System.out.println("\nNumber of Entries : " + entries);
 
         Assertions.assertEquals(employeeList.size(), entries);
     }
-}
+}   
