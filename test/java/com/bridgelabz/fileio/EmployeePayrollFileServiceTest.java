@@ -45,4 +45,33 @@ public class EmployeePayrollFileServiceTest {
 
         Assertions.assertEquals(employeeList.size(), entries);
     }
+
+
+    /**
+     * Tests counting the number of employee payroll entries.
+     */
+    @Test
+    public void givenEmployeePayrollFileWhenCountedShouldReturnNumberOfEntries()
+            throws IOException {
+
+        Path payrollFile = Paths.get("TempPlayGround", "EmployeePayroll.txt");
+
+        List<EmployeePayrollData> employees = List.of(
+                new EmployeePayrollData(101, "Raj", 45000),
+                new EmployeePayrollData(102, "Amit", 50000),
+                new EmployeePayrollData(103, "Priya", 60000)
+        );
+
+        EmployeePayrollFileService service = new EmployeePayrollFileService();
+
+        // Create the file
+        service.writeEmployeePayroll(employees, payrollFile);
+
+        // Now count
+        long entries = service.countEntries(payrollFile);
+
+        System.out.println(entries);
+
+        Assertions.assertEquals(3, entries);
+    }
 }   

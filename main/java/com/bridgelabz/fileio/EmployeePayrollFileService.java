@@ -43,4 +43,16 @@ public class EmployeePayrollFileService {
         Files.lines(filePath)
                 .forEach(System.out::println);
     }
+
+
+    /**
+     * Returns the number of employee payroll entries in the file.
+     *
+     * @param filePath Payroll file path
+     * @return Number of entries
+     * @throws IOException if reading the file fails
+     */
+    public long countEntries(Path filePath) throws IOException {
+        return Files.lines(filePath).count();
+    }
 }
