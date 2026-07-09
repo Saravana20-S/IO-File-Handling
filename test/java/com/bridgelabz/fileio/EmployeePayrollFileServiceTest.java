@@ -74,4 +74,35 @@ public class EmployeePayrollFileServiceTest {
 
         Assertions.assertEquals(3, entries);
     }
+
+
+    @Test
+    public void givenEmployeePayrollFileWhenReadShouldMatchEmployeeCount()
+            throws IOException {
+
+        Path payrollFile =
+                Paths.get("TempPlayGround", "EmployeePayroll.txt");
+
+        List<EmployeePayrollData> employeeList = List.of(
+                new EmployeePayrollData(101, "Jeff Bezos", 100000),
+                new EmployeePayrollData(102, "Bill Gates", 200000),
+                new EmployeePayrollData(103, "Mark Zuckerberg", 300000)
+        );
+
+        EmployeePayrollFileService service =
+                new EmployeePayrollFileService();
+
+        // Write employee payroll to file
+        service.writeEmployeePayroll(employeeList, payrollFile);
+
+        // Read employee payroll from file
+        List<EmployeePayrollData> employees =
+                service.readEmployeePayroll(payrollFile);
+
+        System.out.println("\nEmployee Payroll Records\n");
+
+        employees.forEach(System.out::println);
+
+        Assertions.assertEquals(employeeList.size(), employees.size());
+    }
 }   

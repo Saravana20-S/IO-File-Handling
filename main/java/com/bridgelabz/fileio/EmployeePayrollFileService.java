@@ -55,4 +55,30 @@ public class EmployeePayrollFileService {
     public long countEntries(Path filePath) throws IOException {
         return Files.lines(filePath).count();
     }
+
+    /**
+     * Reads employee payroll data from the file.
+     *
+     * @param filePath Payroll file path
+     * @return List of employee payroll records
+     * @throws IOException if reading fails
+     */
+    public List<EmployeePayrollData> readEmployeePayroll(Path filePath) throws IOException {
+
+        if (Files.notExists(filePath)) {
+            throw new IOException("Payroll file does not exist.");
+        }
+
+        return Files.lines(filePath)
+                .map(line -> {
+                    String[] data = line.split(",");
+
+                    return new EmployeePayrollData(
+                            Integer.parseInt(data[0]),
+                            data[1],
+                            Double.parseDouble(data[2])
+                    );
+                })
+                .toList();
+    }
 }
